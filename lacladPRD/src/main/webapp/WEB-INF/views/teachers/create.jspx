@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_cyu_laclad_domain_Teacher" modelAttribute="teacher" path="/teachers" render="${empty dependencies}" z="Eu9+VXUojjQ51W4m0n0lL1lLGXI=">
+        <field:input field="personalId" id="c_com_cyu_laclad_domain_Teacher_personalId" required="true" validationMessageCode="field_invalid_integer" z="Cu1CxXm7vD/pes4VpIcull5N5a8="/>
+        <field:input field="name" id="c_com_cyu_laclad_domain_Teacher_name" required="true" z="bXgkry5VZGJSaKq+d1HfD8+y6zI="/>
+        <field:input field="lastName" id="c_com_cyu_laclad_domain_Teacher_lastName" required="true" z="2DuGEdmCJTIx96XnFChs6HD10ao="/>
+        <field:input field="secondLastName" id="c_com_cyu_laclad_domain_Teacher_secondLastName" z="Gi2KbSpXp8iCcKuazwKrNXEHBpk="/>
+        <field:input field="phoneNumber" id="c_com_cyu_laclad_domain_Teacher_phoneNumber" required="true" validationMessageCode="field_invalid_integer" z="/DGyr8bZnX5MvIYrNvtvM8BBHRQ="/>
+        <field:select field="gender" id="c_com_cyu_laclad_domain_Teacher_gender" items="${genders}" path="genders" z="h/+Qb5BHAhHPpjnZQD69k5DBe3M="/>
+        <field:select field="mainLanguage" id="c_com_cyu_laclad_domain_Teacher_mainLanguage" itemValue="id" items="${idioms}" path="/idioms" required="true" z="ciH0KgilDn2CWJcARILESvYGxRI="/>
+        <field:input field="systemUser" id="c_com_cyu_laclad_domain_Teacher_systemUser" required="true" z="user-managed"/>
+        <field:select field="status" id="c_com_cyu_laclad_domain_Teacher_status" items="${statuses}" path="statuses" z="8DgHKC0pRtGkE8mDZsd5UTacgWo="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_cyu_laclad_domain_Teacher" render="${not empty dependencies}" z="snAR6UnTkxf9GgVzN1agyGOpLDs="/>
+</div>

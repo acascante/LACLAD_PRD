@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +23,7 @@ public class Admin extends PhysicalPerson {
     /**
      */
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
     private SystemUser systemUser;
 

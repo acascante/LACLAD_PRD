@@ -21,7 +21,7 @@ public abstract class Person extends Entity {
      * Personal ID
      */
     @NotNull
-    @Column(name = "PERSONAL_ID", unique = true)
+    @Column(name = "PERSONAL_ID")
     private Long personalId;
 
     /**

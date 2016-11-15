@@ -12,10 +12,14 @@
                 <menu:item id="i_location_new" messageCode="global_menu_new" url="/locations?form" z="sW8KSnwNnd9wjssI0lLV1kzOguk="/>
                 <menu:item id="i_location_list" messageCode="global_menu_list" url="/locations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VdKLEljpeTLil2W6A3GdWmSBzXI="/>
             </menu:category>
-	        <menu:category id="c_teacher" z="LDHalaWcu+4uB1/Yp2U+qmXGmfE=">
-    	        <menu:item id="i_teacher_new" messageCode="global_menu_new" url="/teachers?form" z="mlYI9sXVCvEJatzE6XYulrmxPjA="/>
-            	<menu:item id="i_teacher_list" messageCode="global_menu_list" url="/teachers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="qck+mw1AUxmT+v1gCnHL2kVUn3k="/>
-        	</menu:category>
+            <menu:category id="c_teacher" z="LDHalaWcu+4uB1/Yp2U+qmXGmfE=">
+                <menu:item id="i_teacher_new" messageCode="global_menu_new" url="/teachers?form" z="mlYI9sXVCvEJatzE6XYulrmxPjA="/>
+                <menu:item id="i_teacher_list" messageCode="global_menu_list" url="/teachers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="qck+mw1AUxmT+v1gCnHL2kVUn3k="/>
+            </menu:category>
+	        <menu:category id="c_admin" z="yJekxb7XuSQP9KBD9S6wbwLaHZY=">
+	            <menu:item id="i_admin_new" messageCode="global_menu_new" url="/admins?form" z="TPmBX+1lfAP8gYU/pX/jcYwsTfM="/>
+	            <menu:item id="i_admin_list" messageCode="global_menu_list" url="/admins?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JRwUq6a+WGX2NnSSZCd4lcreuMk="/>
+	        </menu:category>
         </security:authorize>
     </menu:menu>
 </div>

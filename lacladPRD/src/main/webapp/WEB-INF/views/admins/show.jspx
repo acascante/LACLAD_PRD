@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_cyu_laclad_domain_Admin" object="${admin}" path="/admins" z="?">
+        <field:display field="id" id="s_com_cyu_laclad_domain_Admin_id" object="${admin}" z="user-managed"/>
+        <field:display field="personalId" id="s_com_cyu_laclad_domain_Admin_personalId" object="${admin}" z="4EwtIoKE0qUHDWPaR7ogTRC1v5s="/>
+        <field:display field="name" id="s_com_cyu_laclad_domain_Admin_name" object="${admin}" z="s6cRii8MXMFsH1rLWfEiPC0fpOk="/>
+        <field:display field="lastName" id="s_com_cyu_laclad_domain_Admin_lastName" object="${admin}" z="2YwzPh3OdWerF1ggMClNc5pIjoc="/>
+        <field:display field="secondLastName" id="s_com_cyu_laclad_domain_Admin_secondLastName" object="${admin}" z="uNthu0WM2wWRwML7r2Xo/KPFnds="/>
+        <field:display field="phoneNumber" id="s_com_cyu_laclad_domain_Admin_phoneNumber" object="${admin}" z="DzB4fOid+ftFrEuiY4nm0YXhRW4="/>
+        <field:display field="gender" id="s_com_cyu_laclad_domain_Admin_gender" object="${admin}" z="tStxSX+pOj5PFA8vhLqpkjbIFqM="/>
+        <field:display field="systemUser" id="s_com_cyu_laclad_domain_Admin_systemUser" object="${admin}" z="2lKdDartR0DrTA3KAy4jRpdI2Mw="/>
+        <field:display date="true" dateTimePattern="${admin_date_pattern}" field="enroldDate" id="s_com_cyu_laclad_domain_Admin_enroldDate" object="${admin}" z="user-managed"/>
+        <field:display field="status" id="s_com_cyu_laclad_domain_Admin_status" object="${admin}" z="bjB5x7M3T5ltDN2P4QZNvlDlnmE="/>
+    </page:show>
+</div>

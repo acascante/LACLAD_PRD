@@ -8,6 +8,7 @@
             <table:column id="c_com_cyu_laclad_domain_Teacher_name" property="name" z="lT9qnHrbeduCdnPmveMoL6YHzwE="/>
             <table:column id="c_com_cyu_laclad_domain_Teacher_lastName" property="lastName" z="bQu6m4ZQ9Krcydodt3Pu9iNqyok="/>
             <table:column id="c_com_cyu_laclad_domain_Teacher_mainLanguage" property="mainLanguage" z="vnZkn4gEhdSyv6m//ysRGg2njhY="/>
+            <table:column id="c_com_cyu_laclad_domain_Teacher_phoneNumber" property="phoneNumber" z="rtSVl6gsu10dZG1kBoFIE4zWAJk="/>
         </table:table>
     </page:list>
 </div>

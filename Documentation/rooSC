@@ -131,7 +131,7 @@ field reference	--class ~.laclad.domain.Direction --fieldName location 	--notNul
 field enum	--class ~.laclad.domain.Direction --fieldName type		--column TYPE	 	--notNull	--type ~.laclad.enums.DirectionType
 
 // Person
-field number 	--class ~.laclad.domain.Person --fieldName personalId 	--column PERSONAL_ID 		--notNull	--type java.lang.Long --unique --comment "Personal ID"
+field number 	--class ~.laclad.domain.Person --fieldName personalId 	--column PERSONAL_ID 		--notNull	--type java.lang.Long --comment "Personal ID"
 field string 	--class ~.laclad.domain.Person --fieldName name 	--column NAME 			--notNull 
 field number 	--class ~.laclad.domain.Person --fieldName phoneNumber 	--column PHONE_NUMBER 		--notNull	--type java.lang.Long 
 field set 	--class ~.laclad.domain.Person --fieldName directions 	--type ~.laclad.domain.Direction --cardinality ONE_TO_MANY
@@ -208,6 +208,8 @@ web mvc scaffold --class ~.laclad.web.controller.LocationController
 focus --class ~.laclad.domain.Teacher
 web mvc scaffold --class ~.laclad.web.controller.TeacherController
 
+focus --class ~.laclad.domain.Admin
+web mvc scaffold --class ~.laclad.web.controller.AdminController
 
 // Security
 //security setup

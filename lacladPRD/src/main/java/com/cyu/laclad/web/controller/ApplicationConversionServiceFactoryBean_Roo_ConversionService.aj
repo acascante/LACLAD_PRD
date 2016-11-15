@@ -3,6 +3,7 @@
 
 package com.cyu.laclad.web.controller;
 
+import com.cyu.laclad.domain.Admin;
 import com.cyu.laclad.domain.Idiom;
 import com.cyu.laclad.domain.Location;
 import com.cyu.laclad.domain.Teacher;
@@ -14,6 +15,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<Admin, String> ApplicationConversionServiceFactoryBean.getAdminToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Admin, java.lang.String>() {
+            public String convert(Admin admin) {
+                return new StringBuilder().append(admin.getPersonalId()).append(' ').append(admin.getName()).append(' ').append(admin.getPhoneNumber()).append(' ').append(admin.getLastName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Admin> ApplicationConversionServiceFactoryBean.getIdToAdminConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.Admin>() {
+            public com.cyu.laclad.domain.Admin convert(java.lang.Long id) {
+                return Admin.findAdmin(id);
+            }
+        };
+    }
+    
+    public Converter<String, Admin> ApplicationConversionServiceFactoryBean.getStringToAdminConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Admin>() {
+            public com.cyu.laclad.domain.Admin convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Admin.class);
+            }
+        };
+    }
     
     public Converter<Idiom, String> ApplicationConversionServiceFactoryBean.getIdiomToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Idiom, java.lang.String>() {
@@ -88,6 +113,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getAdminToStringConverter());
+        registry.addConverter(getIdToAdminConverter());
+        registry.addConverter(getStringToAdminConverter());
         registry.addConverter(getIdiomToStringConverter());
         registry.addConverter(getIdToIdiomConverter());
         registry.addConverter(getStringToIdiomConverter());

@@ -220,6 +220,9 @@ web mvc scaffold --class ~.laclad.web.controller.ClassGroupController
 focus --class ~.laclad.domain.Student
 web mvc scaffold --class ~.laclad.web.controller.StudentController
 
+focus --class ~.laclad.domain.Quiz
+web mvc scaffold --class ~.laclad.web.controller.QuizController
+
 // Security
 //security setup
 

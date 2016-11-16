@@ -16,6 +16,7 @@ import com.cyu.laclad.domain.ClassGroup;
 import com.cyu.laclad.domain.Company;
 import com.cyu.laclad.domain.Idiom;
 import com.cyu.laclad.domain.Location;
+import com.cyu.laclad.domain.Quiz;
 import com.cyu.laclad.domain.Student;
 import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.domain.Teacher;
@@ -280,5 +281,33 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         registry.addConverter(getSystemUserToStringConverter());
         registry.addConverter(getIdToSystemUserConverter());
         registry.addConverter(getStringToSystemUserConverter());
+        
+        registry.addConverter(getQuizToStringConverter());
+		registry.addConverter(getIdToQuizConverter());
+		registry.addConverter(getStringToQuizConverter());
+    }
+
+	public Converter<Quiz, String> getQuizToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Quiz, java.lang.String>() {
+            public String convert(Quiz quiz) {
+                return new StringBuilder().append(quiz.getName()).append(' ').append(quiz.getDescription()).toString();
+            }
+        };
+    }
+
+	public Converter<Long, Quiz> getIdToQuizConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.Quiz>() {
+            public com.cyu.laclad.domain.Quiz convert(java.lang.Long id) {
+                return Quiz.findQuiz(id);
+            }
+        };
+    }
+
+	public Converter<String, Quiz> getStringToQuizConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Quiz>() {
+            public com.cyu.laclad.domain.Quiz convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Quiz.class);
+            }
+        };
     }
 }

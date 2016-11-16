@@ -33,4 +33,11 @@ public class ClassGroup extends Entity {
     @Column(name = "STATUS")
     @Enumerated
     private Status status;
+    
+    /**
+     * Group Name
+     */
+    @NotNull
+    @Column(name = "DESCRIPTION")
+    private String description;
 }

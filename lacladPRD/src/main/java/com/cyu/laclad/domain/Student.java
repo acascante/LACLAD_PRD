@@ -6,12 +6,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.cyu.laclad.enums.Status;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 
 @RooJavaBean
 @RooToString
@@ -21,13 +24,13 @@ public class Student extends PhysicalPerson {
     /**
      */
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
     private SystemUser systemUser;
 
     /**
      */
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_GROUP", referencedColumnName = "ID")
     private ClassGroup classGroup;
 

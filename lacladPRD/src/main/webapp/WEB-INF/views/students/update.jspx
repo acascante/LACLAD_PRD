@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_cyu_laclad_domain_Student" modelAttribute="student" path="/students" versionField="Version" z="81kaEQ4bzP9yepr4uU30e9vHM70=">
+        <field:input field="personalId" id="c_com_cyu_laclad_domain_Student_personalId" required="true" validationMessageCode="field_invalid_integer" z="nWKyzRDq03i8ziH6HZk2SfZaHjA="/>
+        <field:input field="name" id="c_com_cyu_laclad_domain_Student_name" required="true" z="bvZoHhl1aeOyMM9MwcCALmKZMYI="/>
+        <field:input field="lastName" id="c_com_cyu_laclad_domain_Student_lastName" required="true" z="eugT/ZWnK0BMyJdL0HKG8ZLA8gY="/>
+        <field:input field="secondLastName" id="c_com_cyu_laclad_domain_Student_secondLastName" z="jz5X8LreznZ5I2aOAJjOiaZK2+M="/>
+        <field:input field="phoneNumber" id="c_com_cyu_laclad_domain_Student_phoneNumber" required="true" validationMessageCode="field_invalid_integer" z="qHdWxAM5sT47T9YQ9Z7H5tFEzg8="/>
+        <field:select field="gender" id="c_com_cyu_laclad_domain_Student_gender" items="${genders}" path="genders" z="L2g/YHCJ032FezX7Ca9L4o15p0c="/>
+        <field:select field="classGroup" id="c_com_cyu_laclad_domain_Student_classGroup" itemValue="id" items="${classgroups}" path="/classgroups" z="lXUU/8eHf4j2Yll/4NGMsiDRQ3E="/>
+        <field:select field="status" id="c_com_cyu_laclad_domain_Student_status" items="${statuses}" path="statuses" z="T+LehBfgK8XSnspERgfNbpo71Kk="/>
+    </form:update>
+</div>

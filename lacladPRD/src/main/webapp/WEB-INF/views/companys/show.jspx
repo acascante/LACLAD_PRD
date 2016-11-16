@@ -3,6 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_cyu_laclad_domain_Company" object="${company}" path="/companys" z="mhscAZhSqvPySFkXvEWF2hUFdws=">
+        <field:display field="id" id="s_com_cyu_laclad_domain_Company_id" object="${company}" z="user-managed"/>
         <field:display field="personalId" id="s_com_cyu_laclad_domain_Company_personalId" object="${company}" z="TFX+duNSgxsxB1C6vkE1laHs0DI="/>
         <field:display field="name" id="s_com_cyu_laclad_domain_Company_name" object="${company}" z="TFtQs1X1B2k89VB83tuixY5aTDE="/>
         <field:display field="juridicName" id="s_com_cyu_laclad_domain_Company_juridicName" object="${company}" z="ZMI4/G0lUR9PYTDpU4Wppy8WzDk="/>

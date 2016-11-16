@@ -214,6 +214,12 @@ web mvc scaffold --class ~.laclad.web.controller.AdminController
 focus --class ~.laclad.domain.Company
 web mvc scaffold --class ~.laclad.web.controller.CompanyController
 
+focus --class ~.laclad.domain.ClassGroup
+web mvc scaffold --class ~.laclad.web.controller.ClassGroupController
+
+focus --class ~.laclad.domain.Student
+web mvc scaffold --class ~.laclad.web.controller.StudentController
+
 // Security
 //security setup
 

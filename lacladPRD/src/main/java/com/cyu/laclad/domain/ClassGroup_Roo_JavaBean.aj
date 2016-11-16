@@ -33,4 +33,12 @@ privileged aspect ClassGroup_Roo_JavaBean {
         this.status = status;
     }
     
+    public String ClassGroup.getDescription() {
+        return this.description;
+    }
+    
+    public void ClassGroup.setDescription(String description) {
+        this.description = description;
+    }
+    
 }

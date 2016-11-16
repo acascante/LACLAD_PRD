@@ -20,9 +20,29 @@
                 <menu:item id="i_admin_new" messageCode="global_menu_new" url="/admins?form" z="TPmBX+1lfAP8gYU/pX/jcYwsTfM="/>
                 <menu:item id="i_admin_list" messageCode="global_menu_list" url="/admins?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JRwUq6a+WGX2NnSSZCd4lcreuMk="/>
             </menu:category>
-	        <menu:category id="c_company" z="tmJjNcrRZwdZqruFqwG+TB5GMek=">
-	            <menu:item id="i_company_new" messageCode="global_menu_new" url="/companys?form" z="SWjXbZ96+4L3yJZ+Q7yyqEFQPV4="/>
-	            <menu:item id="i_company_list" messageCode="global_menu_list" url="/companys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vk1qspgPYbGCO4tYu2Ikm8DhmbY="/>
+            <menu:category id="c_company" z="tmJjNcrRZwdZqruFqwG+TB5GMek=">
+                <menu:item id="i_company_new" messageCode="global_menu_new" url="/companys?form" z="SWjXbZ96+4L3yJZ+Q7yyqEFQPV4="/>
+                <menu:item id="i_company_list" messageCode="global_menu_list" url="/companys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vk1qspgPYbGCO4tYu2Ikm8DhmbY="/>
+            </menu:category>
+            <menu:category id="c_classgroup" z="r7cMlmMTVTFbRqOnniLqHyMrC3g=">
+                <menu:item id="i_classgroup_new" messageCode="global_menu_new" url="/classgroups?form" z="6FV8a3+yKFohuqNEIohjt6U8urM="/>
+                <menu:item id="i_classgroup_list" messageCode="global_menu_list" url="/classgroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gZrTGjogmECVfYQRGX9kFTs8d64="/>
+            </menu:category>
+            <menu:category id="c_student" z="VA/5j81jpINYUQQoxpb8LUYLpWk=">
+	            <menu:item id="i_student_new" messageCode="global_menu_new" url="/students?form" z="xCEWOyB2txSvWmV9Fxwd+H7BxCM="/>
+	            <menu:item id="i_student_list" messageCode="global_menu_list" url="/students?page=1&amp;size=${empty param.size ? 10 : param.size}" z="PSLnBxZ6Z7hXmOglFNorqDjA2H0="/>
+	        </menu:category>
+        </security:authorize>
+        
+        <security:authorize ifAllGranted="ROLE_TEACHER">
+            <menu:category id="c_classgroup" z="r7cMlmMTVTFbRqOnniLqHyMrC3g=">
+                <menu:item id="i_classgroup_new" messageCode="global_menu_new" url="/classgroups?form" z="6FV8a3+yKFohuqNEIohjt6U8urM="/>
+                <menu:item id="i_classgroup_list" messageCode="global_menu_list" url="/classgroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gZrTGjogmECVfYQRGX9kFTs8d64="/>
+            </menu:category>
+        
+	        <menu:category id="c_student" z="VA/5j81jpINYUQQoxpb8LUYLpWk=">
+	            <menu:item id="i_student_new" messageCode="global_menu_new" url="/students?form" z="xCEWOyB2txSvWmV9Fxwd+H7BxCM="/>
+	            <menu:item id="i_student_list" messageCode="global_menu_list" url="/students?page=1&amp;size=${empty param.size ? 10 : param.size}" z="PSLnBxZ6Z7hXmOglFNorqDjA2H0="/>
 	        </menu:category>
         </security:authorize>
     </menu:menu>

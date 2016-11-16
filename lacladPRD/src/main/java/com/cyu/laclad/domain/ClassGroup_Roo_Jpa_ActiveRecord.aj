@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ClassGroup_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> ClassGroup.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "company", "status");
+    public static final List<String> ClassGroup.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "company", "status", "description");
     
     public static long ClassGroup.countClassGroups() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ClassGroup o", Long.class).getSingleResult();

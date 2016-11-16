@@ -3,6 +3,20 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_cyu_laclad_domain_Company" modelAttribute="company" path="/companys" versionField="Version" z="qDJbx730mR4amdloUkQ2/agzDUM=">
-        <field:datetime dateTimePattern="${company_enrolddate_date_format}" field="enroldDate" id="c_com_cyu_laclad_domain_Company_enroldDate" z="kv/ftJHaorWk3D/DT1aPXNZNxBU="/>
+        <field:input field="personalId" id="c_com_cyu_laclad_domain_Company_personalId" required="true" validationMessageCode="field_invalid_integer" z="TgAJQVXoYWrM67FS+8Z+APMHe9Q="/>
+        <field:input field="name" id="c_com_cyu_laclad_domain_Company_name" required="true" z="1sR5eaOIpZuHgpmJzkm94xeJE/E="/>
+        <field:input field="juridicName" id="c_com_cyu_laclad_domain_Company_juridicName" required="true" z="wawhtSG2hBVitnQrleovFLqCDfQ="/>
+        <field:input field="phoneNumber" id="c_com_cyu_laclad_domain_Company_phoneNumber" required="true" validationMessageCode="field_invalid_integer" z="ujxSKYxCGUht6p05GDWn5ct8hkk="/>
+        <field:select field="status" id="c_com_cyu_laclad_domain_Company_status" items="${statuses}" path="statuses" z="YUNhzisT4w/fT3lCmXzbUZPD+n8="/>
+        <div aria-controls="_title_fc_com_cyu_laclad_domain_Company_id_pane" aria-pressed="true" class="dijitTitlePaneTitleFocus" dojoattachpoint="focusNode" role="button" tabindex="0">
+            <span class="dijitTitlePaneTextNode" dojoattachpoint="titleNode" style="-moz-user-select: none;">Contact Information</span>
+            <field:input field="contact.personalId" id="c_com_cyu_laclad_domain_Admin_personalId" required="true" validationMessageCode="field_invalid_integer" z="/UdSwXREU+eYNZOvWLiYg41DYFs="/>
+            <field:input field="contact.name" id="c_com_cyu_laclad_domain_Admin_name" required="true" z="S4B1erlj8HqD/sdkR+V9YoGZEn8="/>
+            <field:input field="contact.lastName" id="c_com_cyu_laclad_domain_Admin_lastName" required="true" z="sGETjWuibQ7CXF5Wn3Irg3hrkRE="/>
+            <field:input field="contact.secondLastName" id="c_com_cyu_laclad_domain_Admin_secondLastName" z="sq0AGbnE5ooGz55Z6YoJu7R2xlc="/>
+            <field:input field="contact.phoneNumber" id="c_com_cyu_laclad_domain_Admin_phoneNumber" required="true" validationMessageCode="field_invalid_integer" z="RG2LEUDwpMjAnEiN3PZYORI2Oq8="/>
+            <field:select field="contact.gender" id="c_com_cyu_laclad_domain_Admin_gender" items="${genders}" path="genders" z="HBIFd44vS7A4zeI992Q6kGVE4GE="/>
+        </div>
+
     </form:update>
 </div>

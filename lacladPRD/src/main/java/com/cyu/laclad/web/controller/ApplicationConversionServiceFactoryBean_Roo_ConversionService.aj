@@ -4,6 +4,7 @@
 package com.cyu.laclad.web.controller;
 
 import com.cyu.laclad.domain.Admin;
+import com.cyu.laclad.domain.Company;
 import com.cyu.laclad.domain.Idiom;
 import com.cyu.laclad.domain.Location;
 import com.cyu.laclad.domain.Teacher;
@@ -36,6 +37,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Admin>() {
             public com.cyu.laclad.domain.Admin convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Admin.class);
+            }
+        };
+    }
+    
+    public Converter<Company, String> ApplicationConversionServiceFactoryBean.getCompanyToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Company, java.lang.String>() {
+            public String convert(Company company) {
+                return new StringBuilder().append(company.getPersonalId()).append(' ').append(company.getName()).append(' ').append(company.getPhoneNumber()).append(' ').append(company.getJuridicName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Company> ApplicationConversionServiceFactoryBean.getIdToCompanyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.Company>() {
+            public com.cyu.laclad.domain.Company convert(java.lang.Long id) {
+                return Company.findCompany(id);
+            }
+        };
+    }
+    
+    public Converter<String, Company> ApplicationConversionServiceFactoryBean.getStringToCompanyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Company>() {
+            public com.cyu.laclad.domain.Company convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Company.class);
             }
         };
     }
@@ -116,6 +141,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getAdminToStringConverter());
         registry.addConverter(getIdToAdminConverter());
         registry.addConverter(getStringToAdminConverter());
+        registry.addConverter(getCompanyToStringConverter());
+        registry.addConverter(getIdToCompanyConverter());
+        registry.addConverter(getStringToCompanyConverter());
         registry.addConverter(getIdiomToStringConverter());
         registry.addConverter(getIdToIdiomConverter());
         registry.addConverter(getStringToIdiomConverter());

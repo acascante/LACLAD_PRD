@@ -1,8 +1,6 @@
 package com.cyu.laclad.web.controller;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -18,45 +16,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-import com.cyu.laclad.domain.Admin;
-import com.cyu.laclad.domain.Direction;
+import com.cyu.laclad.domain.Company;
 import com.cyu.laclad.enums.Gender;
 import com.cyu.laclad.enums.Status;
-import com.cyu.laclad.utils.LacladUtils;
-import com.cyu.laclad.web.command.AdminCommand;
+import com.cyu.laclad.web.command.CompanyCommand;
 
-@RequestMapping("/admins")
+@RequestMapping("/companys")
 @Controller
-@RooWebScaffold(path = "admins", formBackingObject = Admin.class)
-public class AdminController {
+@RooWebScaffold(path = "companys", formBackingObject = Company.class)
+public class CompanyController {
 
 	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid AdminCommand adminCommand, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-		Admin admin = adminCommand.initAdmin();
+    public String create(@Valid CompanyCommand companyCommand, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+		Company company = companyCommand.initCompany();
 		if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, adminCommand);
-            return "admins/create";
+            populateEditForm(uiModel, companyCommand);
+            return "companys/create";
         }
         uiModel.asMap().clear();
-        admin.persist();
-        LacladUtils.sendEmail(admin.getSystemUser().getUserName(), admin.getName() + " " + admin.getLastName(), admin.getSystemUser().getPassword());
-        return "redirect:/admins/" + encodeUrlPathSegment(admin.getId().toString(), httpServletRequest);
+        company.persist();
+        return "redirect:/companys/" + encodeUrlPathSegment(company.getId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(params = "form", produces = "text/html")
     public String createForm(Model uiModel) {
-        populateEditForm(uiModel, new AdminCommand());
-        List<String[]> dependencies = new ArrayList<String[]>();
-        uiModel.addAttribute("dependencies", dependencies);
-        return "admins/create";
+        populateEditForm(uiModel, new CompanyCommand());
+        return "companys/create";
     }
 
 	@RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("admin", Admin.findAdmin(id));
+        uiModel.addAttribute("company", Company.findCompany(id));
         uiModel.addAttribute("itemId", id);
-        return "admins/show";
+        return "companys/show";
     }
 
 	@RequestMapping(produces = "text/html")
@@ -64,56 +57,57 @@ public class AdminController {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("admins", Admin.findAdminEntries(firstResult, sizeNo, sortFieldName, sortOrder));
-            float nrOfPages = (float) Admin.countAdmins() / sizeNo;
+            uiModel.addAttribute("companys", Company.findCompanyEntries(firstResult, sizeNo, sortFieldName, sortOrder));
+            float nrOfPages = (float) Company.countCompanys() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("admins", Admin.findAllAdmins(sortFieldName, sortOrder));
+            uiModel.addAttribute("companys", Company.findAllCompanys(sortFieldName, sortOrder));
         }
         addDateTimeFormatPatterns(uiModel);
-        return "admins/list";
+        return "companys/list";
     }
 
 	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid AdminCommand adminCommand, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-		Admin admin = Admin.findAdmin(adminCommand.getId());
+    public String update(@Valid CompanyCommand companyCommand, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+		Company company = Company.findCompany(companyCommand.getId());
 		if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, adminCommand);
-            return "admins/update";
+            populateEditForm(uiModel, companyCommand);
+            return "companys/update";
         }
-		adminCommand.updateAdmin(admin);
+//		Contact contact = Contact.findContact(companyCommand.getContact().getId());
+//		company.setContact(contact);
+		companyCommand.updateCompany(company);
         uiModel.asMap().clear();
-        admin.merge();
-        return "redirect:/admins/" + encodeUrlPathSegment(admin.getId().toString(), httpServletRequest);
+        company.merge();
+        return "redirect:/companys/" + encodeUrlPathSegment(company.getId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
-		Admin admin = Admin.findAdmin(id);
-		populateEditForm(uiModel, new AdminCommand(admin));
-        return "admins/update";
+		Company company = Company.findCompany(id);
+		populateEditForm(uiModel, new CompanyCommand(company));
+        return "companys/update";
     }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Admin admin = Admin.findAdmin(id);
-        admin.remove();
+        Company company = Company.findCompany(id);
+        company.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/admins";
+        return "redirect:/companys";
     }
 
 	void addDateTimeFormatPatterns(Model uiModel) {
-		uiModel.addAttribute("admin_date_pattern", "dd-MM-yyyy");
+        uiModel.addAttribute("company_enrolddate_date_format", "dd-MM-yyyy");
     }
 
-	void populateEditForm(Model uiModel, AdminCommand admin) {
-        uiModel.addAttribute("admin", admin);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("directions", Direction.findAllDirections());
+	void populateEditForm(Model uiModel, CompanyCommand company) {
+        uiModel.addAttribute("company", company);
         uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
+        addDateTimeFormatPatterns(uiModel);
     }
 
 	String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

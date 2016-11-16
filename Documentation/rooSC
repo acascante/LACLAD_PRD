@@ -64,7 +64,7 @@ entity jpa --class ~.laclad.domain.Direction --extends Entity --sequenceName SQ_
 entity jpa --class ~.laclad.domain.Location --extends Entity --sequenceName SQ_LOCATIONS --table LOCATIONS --inheritanceType JOINED
 
 // Company
-entity jpa --class ~.laclad.domain.Company --extends Entity --sequenceName SQ_COMPANIES --table COMPANIES --inheritanceType JOINED
+entity jpa --class ~.laclad.domain.Company --extends JuridicPerson --sequenceName SQ_COMPANIES --table COMPANIES --inheritanceType JOINED
 
 // -- Enums definitio --
 
@@ -210,6 +210,9 @@ web mvc scaffold --class ~.laclad.web.controller.TeacherController
 
 focus --class ~.laclad.domain.Admin
 web mvc scaffold --class ~.laclad.web.controller.AdminController
+
+focus --class ~.laclad.domain.Company
+web mvc scaffold --class ~.laclad.web.controller.CompanyController
 
 // Security
 //security setup

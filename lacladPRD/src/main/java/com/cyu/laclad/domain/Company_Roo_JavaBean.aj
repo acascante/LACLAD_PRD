@@ -4,6 +4,7 @@
 package com.cyu.laclad.domain;
 
 import com.cyu.laclad.domain.Company;
+import com.cyu.laclad.enums.Status;
 import java.util.Date;
 
 privileged aspect Company_Roo_JavaBean {
@@ -14,6 +15,14 @@ privileged aspect Company_Roo_JavaBean {
     
     public void Company.setEnroldDate(Date enroldDate) {
         this.enroldDate = enroldDate;
+    }
+    
+    public Status Company.getStatus() {
+        return this.status;
+    }
+    
+    public void Company.setStatus(Status status) {
+        this.status = status;
     }
     
 }

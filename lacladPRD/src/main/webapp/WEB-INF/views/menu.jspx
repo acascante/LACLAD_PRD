@@ -16,9 +16,13 @@
                 <menu:item id="i_teacher_new" messageCode="global_menu_new" url="/teachers?form" z="mlYI9sXVCvEJatzE6XYulrmxPjA="/>
                 <menu:item id="i_teacher_list" messageCode="global_menu_list" url="/teachers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="qck+mw1AUxmT+v1gCnHL2kVUn3k="/>
             </menu:category>
-	        <menu:category id="c_admin" z="yJekxb7XuSQP9KBD9S6wbwLaHZY=">
-	            <menu:item id="i_admin_new" messageCode="global_menu_new" url="/admins?form" z="TPmBX+1lfAP8gYU/pX/jcYwsTfM="/>
-	            <menu:item id="i_admin_list" messageCode="global_menu_list" url="/admins?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JRwUq6a+WGX2NnSSZCd4lcreuMk="/>
+            <menu:category id="c_admin" z="yJekxb7XuSQP9KBD9S6wbwLaHZY=">
+                <menu:item id="i_admin_new" messageCode="global_menu_new" url="/admins?form" z="TPmBX+1lfAP8gYU/pX/jcYwsTfM="/>
+                <menu:item id="i_admin_list" messageCode="global_menu_list" url="/admins?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JRwUq6a+WGX2NnSSZCd4lcreuMk="/>
+            </menu:category>
+	        <menu:category id="c_company" z="tmJjNcrRZwdZqruFqwG+TB5GMek=">
+	            <menu:item id="i_company_new" messageCode="global_menu_new" url="/companys?form" z="SWjXbZ96+4L3yJZ+Q7yyqEFQPV4="/>
+	            <menu:item id="i_company_list" messageCode="global_menu_list" url="/companys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vk1qspgPYbGCO4tYu2Ikm8DhmbY="/>
 	        </menu:category>
         </security:authorize>
     </menu:menu>

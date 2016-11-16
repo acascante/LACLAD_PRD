@@ -1,11 +1,13 @@
 package com.cyu.laclad.domain;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
@@ -20,7 +22,6 @@ public abstract class JuridicPerson extends Person {
 
     /**
      */
-    @ManyToOne
-    @JoinColumn(name = "ID_CONTACT", referencedColumnName = "ID")
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Contact contact;
 }

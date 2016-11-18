@@ -156,6 +156,7 @@ field enum 	--class ~.laclad.domain.Teacher --fieldName status --type ~.laclad.e
 field reference --class ~.laclad.domain.Student --fieldName systemUser	--notNull --type ~.laclad.domain.SystemUser --cardinality ONE_TO_ONE --referencedColumnName ID --joinColumnName ID_USER
 field reference --class ~.laclad.domain.Student --fieldName classGroup --type ~.laclad.domain.ClassGroup --cardinality ONE_TO_ONE --referencedColumnName ID --joinColumnName ID_GROUP
 field date 	--class ~.laclad.domain.Student --fieldName enroldDate --type java.util.Date --column ENROLL_DATE	--notNull
+field set 	--class ~.laclad.domain.Student --type ~.laclad.domain.QuizStudent --fieldName quizzes --cardinality ONE_TO_MANY --mappedBy student
 field enum 	--class ~.laclad.domain.Student --fieldName status --type ~.laclad.enums.Status	
 
 // Admin
@@ -223,6 +224,8 @@ web mvc scaffold --class ~.laclad.web.controller.StudentController
 focus --class ~.laclad.domain.Quiz
 web mvc scaffold --class ~.laclad.web.controller.QuizController
 
+focus --class ~.laclad.domain.QuizStudent
+web mvc scaffold --class ~.laclad.web.controller.QuizStudentController
 // Security
 //security setup
 

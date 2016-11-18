@@ -36,14 +36,18 @@
                 <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
                 <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
             </menu:category>
-   	        <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
-	            <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
-	            <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
-	        </menu:category>
-	        <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
-	            <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
-	            <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
-	        </menu:category>
+            <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
+                <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
+                <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
+            </menu:category>
+            <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
+                <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
+                <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
+            </menu:category>
+            <menu:category id="c_quizstudent" z="05oaVVJBU/LB4f/2CtDXDGa9Lpw=">
+            	<menu:item id="i_quizstudent_new" messageCode="global_menu_new" url="/quizstudents?form" z="i2/TtmYVe7MNCbNv7q1D7kDinv4="/>
+            	<menu:item id="i_quizstudent_list" messageCode="global_menu_list" url="/quizstudents?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7BlvZ1HIOWQTjpEjbRXx7pAe6fc="/>
+        	</menu:category>
         </security:authorize>
         <security:authorize ifAllGranted="ROLE_TEACHER">
             <menu:category id="c_classgroup" z="r7cMlmMTVTFbRqOnniLqHyMrC3g=">
@@ -58,14 +62,18 @@
                 <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
                 <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
             </menu:category>
-	        <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
-	            <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
-	            <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
-	        </menu:category>
-	        <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
-	            <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
-	            <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
-	        </menu:category>
+            <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
+                <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
+                <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
+            </menu:category>
+            <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
+                <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
+                <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
+            </menu:category>
+        	<menu:category id="c_quizstudent" z="05oaVVJBU/LB4f/2CtDXDGa9Lpw=">
+            	<menu:item id="i_quizstudent_new" messageCode="global_menu_new" url="/quizstudents?form" z="i2/TtmYVe7MNCbNv7q1D7kDinv4="/>
+            	<menu:item id="i_quizstudent_list" messageCode="global_menu_list" url="/quizstudents?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7BlvZ1HIOWQTjpEjbRXx7pAe6fc="/>
+        	</menu:category>
         </security:authorize>
         <security:authorize ifAllGranted="ROLE_STUDENT">
             <menu:category id="c_student_quiz" z="user-managed">

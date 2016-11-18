@@ -19,6 +19,7 @@ import com.cyu.laclad.domain.Location;
 import com.cyu.laclad.domain.Quiz;
 import com.cyu.laclad.domain.QuizChoice;
 import com.cyu.laclad.domain.QuizQuestion;
+import com.cyu.laclad.domain.QuizStudent;
 import com.cyu.laclad.domain.Student;
 import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.domain.Teacher;
@@ -347,18 +348,23 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         registry.addConverter(getAdminToStringConverter());
         registry.addConverter(getIdToAdminConverter());
         registry.addConverter(getStringToAdminConverter());
+        
         registry.addConverter(getClassGroupToStringConverter());
         registry.addConverter(getIdToClassGroupConverter());
         registry.addConverter(getStringToClassGroupConverter());
+        
         registry.addConverter(getCompanyToStringConverter());
         registry.addConverter(getIdToCompanyConverter());
         registry.addConverter(getStringToCompanyConverter());
+        
         registry.addConverter(getIdiomToStringConverter());
         registry.addConverter(getIdToIdiomConverter());
         registry.addConverter(getStringToIdiomConverter());
+        
         registry.addConverter(getLocationToStringConverter());
         registry.addConverter(getIdToLocationConverter());
         registry.addConverter(getStringToLocationConverter());
+        
         registry.addConverter(getTeacherToStringConverter());
         registry.addConverter(getIdToTeacherConverter());
         registry.addConverter(getStringToTeacherConverter());
@@ -378,5 +384,7 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 		registry.addConverter(getQuizQuestionToStringConverter());
 		registry.addConverter(getIdToQuizQuestionConverter());
 		registry.addConverter(getStringToQuizQuestionConverter());
+		
+		registry.addConverter(getStudentToStringConverter());
     }
 }

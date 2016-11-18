@@ -1,0 +1,3 @@
+### Reset to HEAD ###
+git fetch
+git reset --hard origin/master

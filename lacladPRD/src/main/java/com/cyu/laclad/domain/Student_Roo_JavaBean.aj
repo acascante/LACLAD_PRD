@@ -4,12 +4,30 @@
 package com.cyu.laclad.domain;
 
 import com.cyu.laclad.domain.ClassGroup;
+import com.cyu.laclad.domain.QuizStudent;
 import com.cyu.laclad.domain.Student;
 import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.enums.Status;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Student_Roo_JavaBean {
+    
+    public Date Student.getEnroldDate() {
+        return this.enroldDate;
+    }
+    
+    public void Student.setEnroldDate(Date enroldDate) {
+        this.enroldDate = enroldDate;
+    }
+    
+    public Status Student.getStatus() {
+        return this.status;
+    }
+    
+    public void Student.setStatus(Status status) {
+        this.status = status;
+    }
     
     public SystemUser Student.getSystemUser() {
         return this.systemUser;
@@ -27,20 +45,12 @@ privileged aspect Student_Roo_JavaBean {
         this.classGroup = classGroup;
     }
     
-    public Date Student.getEnroldDate() {
-        return this.enroldDate;
+    public Set<QuizStudent> Student.getQuizzes() {
+        return this.quizzes;
     }
     
-    public void Student.setEnroldDate(Date enroldDate) {
-        this.enroldDate = enroldDate;
-    }
-    
-    public Status Student.getStatus() {
-        return this.status;
-    }
-    
-    public void Student.setStatus(Status status) {
-        this.status = status;
+    public void Student.setQuizzes(Set<QuizStudent> quizzes) {
+        this.quizzes = quizzes;
     }
     
 }

@@ -1,11 +1,15 @@
 package com.cyu.laclad.domain;
+import javax.persistence.CascadeType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import com.cyu.laclad.enums.Status;
-import javax.persistence.Enumerated;
 
 @RooJavaBean
 @RooToString
@@ -14,13 +18,13 @@ public class QuizStudent extends Entity {
 
     /**
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "ID_QUIZ", referencedColumnName = "ID")
     private Quiz quiz;
 
     /**
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "ID_STUDENT", referencedColumnName = "ID")
     private Student student;
 

@@ -6,7 +6,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
@@ -15,24 +14,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.cyu.laclad.enums.Status;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(sequenceName = "SQ_STUDENTS", inheritanceType = "JOINED", table = "STUDENTS")
 public class Student extends PhysicalPerson {
-
-    /**
-     */
-    @NotNull
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
-    private SystemUser systemUser;
-
-    /**
-     */
-    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_GROUP", referencedColumnName = "ID")
-    private ClassGroup classGroup;
 
     /**
      */
@@ -46,4 +35,18 @@ public class Student extends PhysicalPerson {
      */
     @Enumerated
     private Status status;
+
+    @NotNull
+    @OneToOne(cascade = { javax.persistence.CascadeType.ALL })
+    @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
+    private SystemUser systemUser;
+
+    @OneToOne(cascade = { javax.persistence.CascadeType.REFRESH }, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_GROUP", referencedColumnName = "ID")
+    private ClassGroup classGroup;
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private Set<QuizStudent> quizzes = new HashSet<QuizStudent>();
 }

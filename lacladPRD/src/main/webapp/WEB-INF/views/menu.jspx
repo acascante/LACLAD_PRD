@@ -32,9 +32,17 @@
                 <menu:item id="i_student_new" messageCode="global_menu_new" url="/students?form" z="xCEWOyB2txSvWmV9Fxwd+H7BxCM="/>
                 <menu:item id="i_student_list" messageCode="global_menu_list" url="/students?page=1&amp;size=${empty param.size ? 10 : param.size}" z="PSLnBxZ6Z7hXmOglFNorqDjA2H0="/>
             </menu:category>
-  	        <menu:category id="c_quiz" z="ncImBKh7ERj3X+i/kHeBP17/8S8=">
-	            <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
-	            <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
+            <menu:category id="c_quiz" z="ncImBKh7ERj3X+i/kHeBP17/8S8=">
+                <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
+                <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
+            </menu:category>
+   	        <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
+	            <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
+	            <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
+	        </menu:category>
+	        <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
+	            <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
+	            <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
 	        </menu:category>
         </security:authorize>
         <security:authorize ifAllGranted="ROLE_TEACHER">
@@ -46,10 +54,23 @@
                 <menu:item id="i_student_new" messageCode="global_menu_new" url="/students?form" z="xCEWOyB2txSvWmV9Fxwd+H7BxCM="/>
                 <menu:item id="i_student_list" messageCode="global_menu_list" url="/students?page=1&amp;size=${empty param.size ? 10 : param.size}" z="PSLnBxZ6Z7hXmOglFNorqDjA2H0="/>
             </menu:category>
-	        <menu:category id="c_quiz" z="ncImBKh7ERj3X+i/kHeBP17/8S8=">
-	            <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
-	            <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
+            <menu:category id="c_quiz" z="ncImBKh7ERj3X+i/kHeBP17/8S8=">
+                <menu:item id="i_quiz_new" messageCode="global_menu_new" url="/quizes?form" z="bCDLVKMnGWBB9DsBAqgxS8mowIM="/>
+                <menu:item id="i_quiz_list" messageCode="global_menu_list" url="/quizes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gPwnQP5sdwhIulQPZ2UtNAttEFw="/>
+            </menu:category>
+	        <menu:category id="c_quizquestion" z="bpLiZsAMwuPletEU2oHv+0X5vLg=">
+	            <menu:item id="i_quizquestion_new" messageCode="global_menu_new" url="/quizquestions?form" z="JsUq3BFWiwTirV3At1/Ciq1HS/8="/>
+	            <menu:item id="i_quizquestion_list" messageCode="global_menu_list" url="/quizquestions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/Oex4kChTih+xSit0PF8o5dHZNY="/>
 	        </menu:category>
+	        <menu:category id="c_quizchoice" z="Z80i85jla1c1lTo9w205C7ji3x0=">
+	            <menu:item id="i_quizchoice_new" messageCode="global_menu_new" url="/quizchoices?form" z="r1UUWDgbt1pbK4OYej27KtJeuaA="/>
+	            <menu:item id="i_quizchoice_list" messageCode="global_menu_list" url="/quizchoices?page=1&amp;size=${empty param.size ? 10 : param.size}" z="19l4FWP0BEardmhkBlgPoqFVTik="/>
+	        </menu:category>
+        </security:authorize>
+        <security:authorize ifAllGranted="ROLE_STUDENT">
+            <menu:category id="c_student_quiz" z="user-managed">
+                <menu:item id="i_student_quiz_take" messageCode="global_menu_list" url="/studentquiz?form" z="user-managed"/>
+            </menu:category>
         </security:authorize>
     </menu:menu>
 </div>

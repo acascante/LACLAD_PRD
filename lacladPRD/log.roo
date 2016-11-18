@@ -349,3 +349,8 @@ focus --class ~.laclad.domain.Quiz
 web mvc scaffold --class ~.laclad.web.controller.QuizController
 // Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2016-11-16 17:43:47
 // Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2016-11-16 17:46:49
+                                                                        // Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2016-11-18 09:52:19
+focus --class ~.laclad.domain.QuizQuestion
+web mvc scaffold --class ~.laclad.web.controller.QuizQuestionController
+focus --class ~.laclad.domain.QuizChoice
+web mvc scaffold --class ~.laclad.web.controller.QuizChoiceController

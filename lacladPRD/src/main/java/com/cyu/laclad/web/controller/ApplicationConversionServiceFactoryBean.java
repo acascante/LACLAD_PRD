@@ -17,6 +17,8 @@ import com.cyu.laclad.domain.Company;
 import com.cyu.laclad.domain.Idiom;
 import com.cyu.laclad.domain.Location;
 import com.cyu.laclad.domain.Quiz;
+import com.cyu.laclad.domain.QuizChoice;
+import com.cyu.laclad.domain.QuizQuestion;
 import com.cyu.laclad.domain.Student;
 import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.domain.Teacher;
@@ -31,6 +33,11 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 
 	private ApplicationContext applicationContext;
 	
+	@Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
 	@SuppressWarnings("deprecation")
 	protected void installFormatters(FormatterRegistry registry) {
 		super.installFormatters(registry);
@@ -52,15 +59,16 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         };
     }
 	
-	@Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
 	public Converter<Admin, String> getAdminToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Admin, java.lang.String>() {
             public String convert(Admin admin) {
-                return new StringBuilder().append(admin.getPersonalId()).append(' ').append(admin.getName()).append(' ').append(admin.getPhoneNumber()).append(' ').append(admin.getLastName()).toString();
+                return new StringBuilder().append(admin.getPersonalId())
+                		.append(' ')
+                		.append(admin.getName())
+                		.append(' ')
+                		.append(admin.getPhoneNumber())
+                		.append(' ')
+                		.append(admin.getLastName()).toString();
             }
         };
     }
@@ -208,7 +216,10 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 	public Converter<Student, String> getStudentToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Student, java.lang.String>() {
             public String convert(Student student) {
-                return new StringBuilder().append(student.getPersonalId()).append(' ').append(student.getName()).append(' ').append(student.getPhoneNumber()).append(' ').append(student.getLastName()).toString();
+                return new StringBuilder()
+                		.append(student.getName())
+                		.append(' ')
+                		.append(student.getLastName()).toString();
             }
         };
     }
@@ -253,6 +264,80 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         };
     }
 
+	public Converter<Quiz, String> getQuizToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Quiz, java.lang.String>() {
+            public String convert(Quiz quiz) {
+                return new StringBuilder()
+                		.append(quiz.getName()).toString();
+            }
+        };
+    }
+
+	public Converter<Long, Quiz> getIdToQuizConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.Quiz>() {
+            public com.cyu.laclad.domain.Quiz convert(java.lang.Long id) {
+                return Quiz.findQuiz(id);
+            }
+        };
+    }
+
+	public Converter<String, Quiz> getStringToQuizConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Quiz>() {
+            public com.cyu.laclad.domain.Quiz convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Quiz.class);
+            }
+        };
+    }
+
+	public Converter<QuizChoice, String> getQuizChoiceToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.QuizChoice, java.lang.String>() {
+            public String convert(QuizChoice quizChoice) {
+                return new StringBuilder().append(quizChoice.getOptionNumber()).append(' ').append(quizChoice.getDescription()).toString();
+            }
+        };
+    }
+
+	public Converter<Long, QuizChoice> getIdToQuizChoiceConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.QuizChoice>() {
+            public com.cyu.laclad.domain.QuizChoice convert(java.lang.Long id) {
+                return QuizChoice.findQuizChoice(id);
+            }
+        };
+    }
+
+	public Converter<String, QuizChoice> getStringToQuizChoiceConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.QuizChoice>() {
+            public com.cyu.laclad.domain.QuizChoice convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), QuizChoice.class);
+            }
+        };
+    }
+
+	public Converter<QuizQuestion, String> getQuizQuestionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.QuizQuestion, java.lang.String>() {
+            public String convert(QuizQuestion quizQuestion) {
+                return new StringBuilder().append(quizQuestion.getQuestionNumber())
+                		.append(" - ")
+                		.append(quizQuestion.getStatement()).toString();
+            }
+        };
+    }
+
+	public Converter<Long, QuizQuestion> getIdToQuizQuestionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.QuizQuestion>() {
+            public com.cyu.laclad.domain.QuizQuestion convert(java.lang.Long id) {
+                return QuizQuestion.findQuizQuestion(id);
+            }
+        };
+    }
+
+	public Converter<String, QuizQuestion> getStringToQuizQuestionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.QuizQuestion>() {
+            public com.cyu.laclad.domain.QuizQuestion convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), QuizQuestion.class);
+            }
+        };
+    }
 	public void afterPropertiesSet() {
         super.afterPropertiesSet();
         installLabelConverters(getObject());
@@ -285,29 +370,13 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         registry.addConverter(getQuizToStringConverter());
 		registry.addConverter(getIdToQuizConverter());
 		registry.addConverter(getStringToQuizConverter());
-    }
-
-	public Converter<Quiz, String> getQuizToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.Quiz, java.lang.String>() {
-            public String convert(Quiz quiz) {
-                return new StringBuilder().append(quiz.getName()).append(' ').append(quiz.getDescription()).toString();
-            }
-        };
-    }
-
-	public Converter<Long, Quiz> getIdToQuizConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.Quiz>() {
-            public com.cyu.laclad.domain.Quiz convert(java.lang.Long id) {
-                return Quiz.findQuiz(id);
-            }
-        };
-    }
-
-	public Converter<String, Quiz> getStringToQuizConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.Quiz>() {
-            public com.cyu.laclad.domain.Quiz convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Quiz.class);
-            }
-        };
+		
+		registry.addConverter(getQuizChoiceToStringConverter());
+		registry.addConverter(getIdToQuizChoiceConverter());
+		registry.addConverter(getStringToQuizChoiceConverter());
+		
+		registry.addConverter(getQuizQuestionToStringConverter());
+		registry.addConverter(getIdToQuizQuestionConverter());
+		registry.addConverter(getStringToQuizQuestionConverter());
     }
 }

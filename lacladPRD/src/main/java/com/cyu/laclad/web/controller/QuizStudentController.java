@@ -1,12 +1,11 @@
 package com.cyu.laclad.web.controller;
-import com.cyu.laclad.domain.Quiz;
-import com.cyu.laclad.domain.QuizStudent;
-import com.cyu.laclad.domain.Student;
-import com.cyu.laclad.enums.Status;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import com.cyu.laclad.domain.Quiz;
+import com.cyu.laclad.domain.QuizStudent;
+import com.cyu.laclad.domain.Student;
+import com.cyu.laclad.enums.Status;
 
 @RequestMapping("/quizstudents")
 @Controller
@@ -78,6 +82,12 @@ public class QuizStudentController {
         return "quizstudents/update";
     }
 
+	@RequestMapping(value = "/{id}", params = "assign", produces = "text/html")
+    public String assignForm(@PathVariable("id") Long id, Model uiModel) {
+        populateEditFormFromQuiz(uiModel, Arrays.asList(Quiz.findQuiz(id)));
+        return "quizstudents/create";
+    }
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         QuizStudent quizStudent = QuizStudent.findQuizStudent(id);
@@ -91,10 +101,17 @@ public class QuizStudentController {
 	void populateEditForm(Model uiModel, QuizStudent quizStudent) {
         uiModel.addAttribute("quizStudent", quizStudent);
         uiModel.addAttribute("quizes", Quiz.findAllQuizes());
-        uiModel.addAttribute("students", Student.findAllStudents(Status.ACTIVE));
+        uiModel.addAttribute("students", Student.findAllStudents());
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
 
+	void populateEditFormFromQuiz(Model uiModel, List<Quiz> quizes) {
+		uiModel.addAttribute("quizStudent", new QuizStudent());
+        uiModel.addAttribute("quizes", quizes);
+        uiModel.addAttribute("students", Student.findAllStudents(Status.ACTIVE));
+        uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
+    }
+	
 	String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {

@@ -156,7 +156,6 @@ field enum 	--class ~.laclad.domain.Teacher --fieldName status --type ~.laclad.e
 field reference --class ~.laclad.domain.Student --fieldName systemUser	--notNull --type ~.laclad.domain.SystemUser --cardinality ONE_TO_ONE --referencedColumnName ID --joinColumnName ID_USER
 field reference --class ~.laclad.domain.Student --fieldName classGroup --type ~.laclad.domain.ClassGroup --cardinality ONE_TO_ONE --referencedColumnName ID --joinColumnName ID_GROUP
 field date 	--class ~.laclad.domain.Student --fieldName enroldDate --type java.util.Date --column ENROLL_DATE	--notNull
-field set 	--class ~.laclad.domain.Student --type ~.laclad.domain.QuizStudent --fieldName quizzes --cardinality ONE_TO_MANY --mappedBy student
 field enum 	--class ~.laclad.domain.Student --fieldName status --type ~.laclad.enums.Status	
 
 // Admin
@@ -195,6 +194,9 @@ field reference --class ~.laclad.domain.QuizResponse --fieldName choice		--type 
 // Company
 field date --class ~.laclad.domain.Company --fieldName enroldDate --type java.util.Date --column ENROLL_DATE
 
+field set 	--class ~.laclad.domain.Student --type ~.laclad.domain.QuizStudent --fieldName quizzes --cardinality ONE_TO_MANY --mappedBy student
+field set 	--class ~.laclad.domain.Quiz	--type ~.laclad.domain.QuizStudent --fieldName students --cardinality ONE_TO_MANY --mappedBy quiz
+
 // -- Web MVC Setup --
 //web mvc setup
 
@@ -202,6 +204,7 @@ field date --class ~.laclad.domain.Company --fieldName enroldDate --type java.ut
 // -- You have to create at least one controller before to create a security setup
 focus --class ~.laclad.domain.Idiom
 web mvc scaffold --class ~.laclad.web.controller.IdiomController
+finder add findIdiomsByStatus
 
 focus --class ~.laclad.domain.Location
 web mvc scaffold --class ~.laclad.web.controller.LocationController

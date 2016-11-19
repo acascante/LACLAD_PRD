@@ -74,8 +74,6 @@ public class CompanyController {
             populateEditForm(uiModel, companyCommand);
             return "companys/update";
         }
-//		Contact contact = Contact.findContact(companyCommand.getContact().getId());
-//		company.setContact(contact);
 		companyCommand.updateCompany(company);
         uiModel.asMap().clear();
         company.merge();

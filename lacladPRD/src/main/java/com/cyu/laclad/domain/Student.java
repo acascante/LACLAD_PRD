@@ -8,13 +8,17 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import com.cyu.laclad.enums.Status;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.OneToMany;
 
@@ -49,4 +53,13 @@ public class Student extends PhysicalPerson {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private Set<QuizStudent> quizzes = new HashSet<QuizStudent>();
+    
+    
+    public static List<Student> findAllStudents(Status status) {
+        if (status == null) throw new IllegalArgumentException("The status argument is required");
+        EntityManager em = Student.entityManager();
+        TypedQuery<Student> q = em.createQuery("SELECT o FROM Student AS o WHERE o.status = :status", Student.class);
+        q.setParameter("status", status);
+        return q.getResultList();
+    }
 }

@@ -122,7 +122,7 @@ public class TeacherController {
         uiModel.addAttribute("teacher", teacher);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("directions", Direction.findAllDirections());
-        uiModel.addAttribute("idioms", Idiom.findAllIdioms());
+        uiModel.addAttribute("idioms", Idiom.findAllIdioms(Status.ACTIVE));
         uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
@@ -136,5 +136,15 @@ public class TeacherController {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+
+	void populateEditForm(Model uiModel, Teacher teacher) {
+        uiModel.addAttribute("teacher", teacher);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("directions", Direction.findAllDirections());
+        uiModel.addAttribute("idioms", Idiom.findAllIdioms());
+        uiModel.addAttribute("systemusers", SystemUser.findAllSystemUsers());
+        uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
+        uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
 }

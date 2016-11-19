@@ -21,6 +21,8 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 import com.cyu.laclad.domain.ClassGroup;
+import com.cyu.laclad.domain.Direction;
+import com.cyu.laclad.domain.QuizStudent;
 import com.cyu.laclad.domain.Student;
 import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.enums.Gender;
@@ -117,7 +119,7 @@ public class StudentController {
 	void populateEditForm(Model uiModel, StudentCommand student) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("student", student);
-        uiModel.addAttribute("classgroups", ClassGroup.findAllClassGroups());
+        uiModel.addAttribute("classgroups", ClassGroup.findAllClassGroups(Status.ACTIVE));
         uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
@@ -131,5 +133,16 @@ public class StudentController {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+
+	void populateEditForm(Model uiModel, Student student) {
+        uiModel.addAttribute("student", student);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("classgroups", ClassGroup.findAllClassGroups());
+        uiModel.addAttribute("directions", Direction.findAllDirections());
+        uiModel.addAttribute("quizstudents", QuizStudent.findAllQuizStudents());
+        uiModel.addAttribute("systemusers", SystemUser.findAllSystemUsers());
+        uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
+        uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
 }

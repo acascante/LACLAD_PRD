@@ -8,6 +8,7 @@
             <table:column id="c_com_cyu_laclad_domain_Company_name" property="name" z="jNY7GHEyBp1sa87hAii9GW7GBu0="/>
             <table:column id="c_com_cyu_laclad_domain_Company_juridicName" property="juridicName" z="ivbizVa5dHNf5N0J8ngf4t3lM9E="/>
             <table:column id="c_com_cyu_laclad_domain_Company_phoneNumber" property="phoneNumber" z="KlrsWiYyK/HpdWLzvG03kPQsHRg="/>
+            <table:column id="c_com_cyu_laclad_domain_Company_status" property="status" z="?"/>
         </table:table>
     </page:list>
 </div>

@@ -387,4 +387,28 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 		
 		registry.addConverter(getStudentToStringConverter());
     }
+
+	public Converter<QuizStudent, String> getQuizStudentToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.cyu.laclad.domain.QuizStudent, java.lang.String>() {
+            public String convert(QuizStudent quizStudent) {
+                return "(no displayable fields)";
+            }
+        };
+    }
+
+	public Converter<Long, QuizStudent> getIdToQuizStudentConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.cyu.laclad.domain.QuizStudent>() {
+            public com.cyu.laclad.domain.QuizStudent convert(java.lang.Long id) {
+                return QuizStudent.findQuizStudent(id);
+            }
+        };
+    }
+
+	public Converter<String, QuizStudent> getStringToQuizStudentConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.cyu.laclad.domain.QuizStudent>() {
+            public com.cyu.laclad.domain.QuizStudent convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), QuizStudent.class);
+            }
+        };
+    }
 }

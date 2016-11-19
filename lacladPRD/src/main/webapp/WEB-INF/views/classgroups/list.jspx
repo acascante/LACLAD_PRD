@@ -6,8 +6,8 @@
         <table:table data="${classgroups}" id="l_com_cyu_laclad_domain_ClassGroup" path="/classgroups" z="io0/nLuecqxgpW73raYaddlfoUs=">
             <table:column id="c_com_cyu_laclad_domain_ClassGroup_name" property="name" z="MUGR8H4mxMbqqCjClcQ4nmEJuBY="/>
             <table:column id="c_com_cyu_laclad_domain_ClassGroup_company" property="company" z="HKUtAxGwS/CY9bFBko2S16dg/qE="/>
-            <table:column id="c_com_cyu_laclad_domain_ClassGroup_status" property="status" z="GPou2vSU3axm+KLePbJftDnf85Q="/>
             <table:column id="c_com_cyu_laclad_domain_ClassGroup_description" property="description" z="alT8Kj0b9VsXbjLHbkY1Oqjy/ec="/>
+            <table:column id="c_com_cyu_laclad_domain_ClassGroup_status" property="status" z="GPou2vSU3axm+KLePbJftDnf85Q="/>
         </table:table>
     </page:list>
 </div>

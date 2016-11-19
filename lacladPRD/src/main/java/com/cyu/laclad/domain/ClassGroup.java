@@ -2,10 +2,16 @@ package com.cyu.laclad.domain;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
+
 import com.cyu.laclad.enums.Status;
 import javax.persistence.Enumerated;
 
@@ -40,4 +46,12 @@ public class ClassGroup extends Entity {
     @NotNull
     @Column(name = "DESCRIPTION")
     private String description;
+    
+    public static List<ClassGroup> findAllClassGroups (Status status) {
+        if (status == null) throw new IllegalArgumentException("The status argument is required");
+        EntityManager em = ClassGroup.entityManager();
+        TypedQuery<ClassGroup> q = em.createQuery("SELECT o FROM ClassGroup AS o WHERE o.status = :status", ClassGroup.class);
+        q.setParameter("status", status);
+        return q.getResultList();
+    }
 }

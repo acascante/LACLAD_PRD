@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_cyu_laclad_domain_Student" items="${students}" z="5ZV73APvBJuN3YMuJywI6e25EKU=">
-        <table:table data="${students}" id="l_com_cyu_laclad_domain_Student" path="/students" z="lwJeKLj1xXcjApiSeaLzgAL0D+I=">
+        <table:table assignTest="S" data="${students}" id="l_com_cyu_laclad_domain_Student" path="/students" z="user-managed">
             <table:column id="c_com_cyu_laclad_domain_Student_personalId" property="personalId" z="PAEFWxxVy08SLtonKra1gR0X0fs="/>
             <table:column id="c_com_cyu_laclad_domain_Student_name" property="name" z="pMDngESWPGVNVmnuA+Oo8jvaMq8="/>
             <table:column id="c_com_cyu_laclad_domain_Student_lastName" property="lastName" z="eIQKKuwL0ry4cSOBOO1IZ+Aa/a0="/>

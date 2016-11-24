@@ -9,7 +9,7 @@
   <jsp:directive.attribute name="create" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'create' link into table (default true)" />
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
-  <jsp:directive.attribute name="assign" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'assign' link into table (default false)" />
+  <jsp:directive.attribute name="assignTest" type="java.lang.String" required="false" rtexprvalue="true" description="Include 'assign' link into table, S=Student Q=Quiz" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
@@ -36,7 +36,7 @@
       <c:set var="delete" value="true" />
     </c:if>
 
-	<c:if test="${assign}">
+	<c:if test="${assignTest != null}">
       <c:set var="assign" value="true" />
       <c:set var="pathAssign" value="/quizstudents" />
     </c:if>
@@ -114,6 +114,7 @@
       <c:forEach items="${data}" var="item">
         <tr>
           <c:forTokens items="${columnProperties}" delims="${'&#9999;'}" var="column" varStatus="num">
+          	<c:set var="showAssign" value="false" />
             <c:set var="columnMaxLength" value="${lengths[num.count-1]}" />
             <c:set var="columnType" value="${types[num.count-1]}" />
             <c:set var="columnDatePattern" value="${patterns[num.count-1]}" />
@@ -140,6 +141,9 @@
               </c:if>
               <c:out value="${colTxt}" />
             </td>
+      		<c:if test="${colTxt == 'Active'}">
+      			<c:set var="showAssign" value="true" />
+		    </c:if>
           </c:forTokens>
           <c:set var="itemId"><spring:eval expression="item[typeIdFieldName]"/></c:set>
           <td class="utilbox">
@@ -183,15 +187,20 @@
               </form:form>
             </td>
           </c:if>
-          <c:if test="${assign}">
+          <c:if test="${assign and showAssign}">
             <td class="utilbox">
 	            <span class="new">
 	              <spring:url value="${pathAssign}/${itemId}" var="create_url">
-	                <spring:param name="assign" />
+	              	<c:if test="${assignTest == 'Q'}">
+	                	<spring:param name="assignQ" />
+	                </c:if>
+	                <c:if test="${assignTest == 'S'}">
+	                	<spring:param name="assignS" />
+	                </c:if>
 	              </spring:url>
 	              <a href="${create_url}">
 	                <spring:url value="/resources/images/add.png" var="create_img_url" />
-	                <spring:message arguments="${typeName}" code="global_menu_new" var="add_message" htmlEscape="false" />
+	                <spring:message arguments="${typeName}" code="global_menu_assign" var="add_message" htmlEscape="false" />
 	                <img alt="${fn:escapeXml(add_message)}" src="${create_img_url}" title="${fn:escapeXml(add_message)}" />
 	              </a>
 	            </span>
@@ -209,7 +218,7 @@
               </spring:url>
               <a href="${create_url}">
                 <spring:url value="/resources/images/add.png" var="create_img_url" />
-                <spring:message arguments="${typeName}" code="global_menu_new" var="add_message" htmlEscape="false" />
+                <spring:message arguments="Quiz" code="global_menu_new" var="add_message" htmlEscape="false" />
                 <img alt="${fn:escapeXml(add_message)}" src="${create_img_url}" title="${fn:escapeXml(add_message)}" />
               </a>
             </span>

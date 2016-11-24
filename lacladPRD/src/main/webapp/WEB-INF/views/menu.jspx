@@ -76,8 +76,8 @@
         	</menu:category>
         </security:authorize>
         <security:authorize ifAllGranted="ROLE_STUDENT">
-            <menu:category id="c_student_quiz" z="user-managed">
-                <menu:item id="i_student_quiz_take" messageCode="global_menu_list" url="/studentquiz?form" z="user-managed"/>
+        	<menu:category id="c_quizstudent" z="05oaVVJBU/LB4f/2CtDXDGa9Lpw=">
+            	<menu:item id="i_quizstudent_list" messageCode="global_menu_list" url="/quizstudents?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7BlvZ1HIOWQTjpEjbRXx7pAe6fc="/>
             </menu:category>
         </security:authorize>
     </menu:menu>

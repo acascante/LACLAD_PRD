@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +22,9 @@ import org.springframework.web.util.WebUtils;
 import com.cyu.laclad.domain.Quiz;
 import com.cyu.laclad.domain.QuizStudent;
 import com.cyu.laclad.domain.Student;
+import com.cyu.laclad.domain.SystemUser;
 import com.cyu.laclad.enums.Status;
+import com.cyu.laclad.enums.UserType;
 
 @RequestMapping("/quizstudents")
 @Controller
@@ -53,14 +57,27 @@ public class QuizStudentController {
 
 	@RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("quizstudents", QuizStudent.findQuizStudentEntries(firstResult, sizeNo, sortFieldName, sortOrder));
-            float nrOfPages = (float) QuizStudent.countQuizStudents() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+		SystemUser user = isStudent(); 
+        if (user != null) {
+        	if (page != null || size != null) {
+	            int sizeNo = size == null ? 10 : size.intValue();
+	            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+	            uiModel.addAttribute("quizstudents", QuizStudent.findQuizStudentEntries(firstResult, sizeNo, sortFieldName, sortOrder, user.getId(), Status.ACTIVE));
+	            float nrOfPages = (float) QuizStudent.countQuizStudents() / sizeNo;
+	            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+	        } else {
+	            uiModel.addAttribute("quizstudents", QuizStudent.findAllQuizStudents(sortFieldName, sortOrder, user.getId(), Status.ACTIVE));
+	        }
         } else {
-            uiModel.addAttribute("quizstudents", QuizStudent.findAllQuizStudents(sortFieldName, sortOrder));
+			if (page != null || size != null) {
+	            int sizeNo = size == null ? 10 : size.intValue();
+	            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+	            uiModel.addAttribute("quizstudents", QuizStudent.findQuizStudentEntries(firstResult, sizeNo, sortFieldName, sortOrder));
+	            float nrOfPages = (float) QuizStudent.countQuizStudents() / sizeNo;
+	            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+	        } else {
+	            uiModel.addAttribute("quizstudents", QuizStudent.findAllQuizStudents(sortFieldName, sortOrder));
+	        }
         }
         return "quizstudents/list";
     }
@@ -82,9 +99,15 @@ public class QuizStudentController {
         return "quizstudents/update";
     }
 
-	@RequestMapping(value = "/{id}", params = "assign", produces = "text/html")
-    public String assignForm(@PathVariable("id") Long id, Model uiModel) {
+	@RequestMapping(value = "/{id}", params = "assignQ", produces = "text/html")
+    public String assignFormQuiz(@PathVariable("id") Long id, Model uiModel) {
         populateEditFormFromQuiz(uiModel, Arrays.asList(Quiz.findQuiz(id)));
+        return "quizstudents/create";
+    }
+	
+	@RequestMapping(value = "/{id}", params = "assignS", produces = "text/html")
+    public String assignFormStudent(@PathVariable("id") Long id, Model uiModel) {
+        populateEditFormFromStudent(uiModel, Arrays.asList(Student.findStudent(id)));
         return "quizstudents/create";
     }
 
@@ -100,7 +123,7 @@ public class QuizStudentController {
 
 	void populateEditForm(Model uiModel, QuizStudent quizStudent) {
         uiModel.addAttribute("quizStudent", quizStudent);
-        uiModel.addAttribute("quizes", Quiz.findAllQuizes());
+        uiModel.addAttribute("quizes", Quiz.findAllQuizes(Status.ACTIVE));
         uiModel.addAttribute("students", Student.findAllStudents());
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
@@ -109,6 +132,13 @@ public class QuizStudentController {
 		uiModel.addAttribute("quizStudent", new QuizStudent());
         uiModel.addAttribute("quizes", quizes);
         uiModel.addAttribute("students", Student.findAllStudents(Status.ACTIVE));
+        uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
+    }
+	
+	void populateEditFormFromStudent(Model uiModel, List<Student> students) {
+		uiModel.addAttribute("quizStudent", new QuizStudent());
+        uiModel.addAttribute("quizes", Quiz.findAllQuizes());
+        uiModel.addAttribute("students", students);
         uiModel.addAttribute("statuses", Arrays.asList(Status.values()));
     }
 	
@@ -122,4 +152,17 @@ public class QuizStudentController {
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
+	
+	private String getUserName() {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return userDetails.getUsername();
+	}
+	
+	private SystemUser isStudent() {
+		SystemUser systemUser = SystemUser.findSystemUsersByUserNameEquals(getUserName());
+		if (systemUser.getType().equals(UserType.ROLE_STUDENT)) {
+			return systemUser;
+		}
+		return null;
+	}
 }

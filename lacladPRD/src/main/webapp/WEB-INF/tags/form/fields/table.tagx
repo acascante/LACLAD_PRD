@@ -187,7 +187,7 @@
             <td class="utilbox">
 	            <span class="new">
 	              <spring:url value="${pathAssign}/${itemId}" var="create_url">
-	                <spring:param name="form" />
+	                <spring:param name="assign" />
 	              </spring:url>
 	              <a href="${create_url}">
 	                <spring:url value="/resources/images/add.png" var="create_img_url" />

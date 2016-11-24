@@ -1,3 +1,11 @@
 ### Reset to HEAD ###
 git fetch
 git reset --hard origin/master
+
+### Create a Branch ###
+git branch branchName
+git checkout branchName
+
+-- Delete branch
+git branch -d branchName
+

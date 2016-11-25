@@ -9,8 +9,17 @@
         <form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
         <logout logout-url="/resources/j_spring_security_logout" />
         <!-- Configure these elements to secure URIs in your application -->
-        <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/member/**" access="isAuthenticated()" />
+        <intercept-url pattern="/admins/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/idioms/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/locations/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/teachers/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/companys/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/classgroups/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')" />
+        <intercept-url pattern="/students/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')"  />
+        <intercept-url pattern="/quizes/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')" />
+        <intercept-url pattern="/quizquestions/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')" />
+        <intercept-url pattern="/quizchoices/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')" />
+        <intercept-url pattern="/quizstudents/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')" />
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/login/**" access="permitAll" />
         <intercept-url pattern="/**" access="isAuthenticated()" />

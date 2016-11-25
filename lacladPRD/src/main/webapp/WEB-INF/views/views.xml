@@ -10,16 +10,16 @@
     <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx"/>
   </definition>
 
+  <definition extends="public" name="accessDeniedException">
+    <put-attribute name="body" value="/WEB-INF/views/accessDeniedException.jspx"/>
+  </definition>
+  
   <definition extends="public" name="resourceNotFound">
     <put-attribute name="body" value="/WEB-INF/views/resourceNotFound.jspx"/>
   </definition>
 
   <definition extends="public" name="uncaughtException">
     <put-attribute name="body" value="/WEB-INF/views/uncaughtException.jspx"/>
-  </definition>
-
-  <definition extends="public" name="accessDenied">
-    <put-attribute name="body" value="/WEB-INF/views/accessDeniedException.jspx"/>
   </definition>
   
   <definition extends="public" name="login">

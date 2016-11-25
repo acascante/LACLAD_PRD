@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import com.cyu.laclad.enums.Status;
 import com.cyu.laclad.utils.LacladUtils;
 import com.cyu.laclad.web.command.AdminCommand;
 
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/admins")
 @Controller
 @RooWebScaffold(path = "admins", formBackingObject = Admin.class)
